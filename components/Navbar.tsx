@@ -11,7 +11,7 @@ export default function Navbar({ dark, setDark }: any) {
       className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/30 dark:bg-black/30 border-b border-white/20"
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="font-bold text-lg">Sandeep</h1>
+        <h1 className="font-bold text-lg">RANJANI</h1>
 
         <div className="flex items-center gap-6">
           <a href="#projects" className="hover:text-indigo-500">
