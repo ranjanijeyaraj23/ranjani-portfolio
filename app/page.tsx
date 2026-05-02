@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   const [dark, setDark] = useState(false);
@@ -44,7 +45,7 @@ export default function Home() {
       {/* NAVBAR */}
       <header className="fixed top-0 w-full backdrop-blur-xl bg-white/70 dark:bg-black/40 border-b z-50">
         <div className="max-w-6xl mx-auto flex justify-between px-6 py-4">
-          <h1 className="font-bold">Sandeep</h1>
+          <Reveal><h1 className="font-bold">RANJANI</h1></Reveal>
 
           <div className="flex gap-6 items-center">
             <a href="#projects">Projects</a>
