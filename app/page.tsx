@@ -84,7 +84,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://github.com/YOUR_USERNAME"
+            href="https://github.com/ranjanijeyaraj23"
             target="_blank"
             className="px-6 py-3 border rounded-lg"
           >
