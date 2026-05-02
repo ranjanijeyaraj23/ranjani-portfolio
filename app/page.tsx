@@ -78,7 +78,7 @@ export default function Home() {
 
         <div className="mt-8 flex gap-4">
           <a
-            href="/resume.pdf"
+            href="/Ranjani_Frontend_Developer_Resume.pdf"
             className="px-6 py-3 bg-indigo-500 text-white rounded-lg shadow hover:scale-105 transition"
           >
             Download Resume
