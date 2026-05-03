@@ -1,289 +1,514 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Download,
+  Mail,
+  Sparkles,
+  Gauge,
+  Layers,
+  Wand2,
+} from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import { GithubIcon } from "@/components/icons";
+
+const projects = [
+  {
+    title: "E-commerce Platform",
+    tagline: "Full-stack shop with cart, filters, dynamic catalog.",
+    impact: "95+ Lighthouse",
+    points: [
+      "Achieved 95+ Lighthouse performance score",
+      "Dynamic routing & ISR with Next.js App Router",
+      "Optimized rendering for sub-second TTI",
+    ],
+    stack: ["Next.js", "React", "Tailwind"],
+    link: "https://ecommerce-app-liard-eight.vercel.app",
+    featured: true,
+  },
+  {
+    title: "Admin Dashboard",
+    tagline: "Analytics console with auth and live charts.",
+    impact: "Real-time data",
+    points: [
+      "Charts for real-time business insights",
+      "Secure authentication system",
+      "Fully responsive across devices",
+    ],
+    stack: ["React", "Charts", "Auth"],
+    link: "https://admin-dashboard-tau-neon-v4jhw2udf8.vercel.app",
+  },
+  {
+    title: "Business Website",
+    tagline: "Marketing site with embedded chatbot.",
+    impact: "Mobile-first",
+    points: [
+      "Improved engagement with chatbot integration",
+      "Mobile-first responsive layout",
+      "Performance-optimized UI",
+    ],
+    stack: ["Next.js", "Tailwind"],
+    link: "https://eeshisoft-nine.vercel.app",
+  },
+];
+
+const techGroups = [
+  {
+    title: "Languages",
+    items: ["TypeScript", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    title: "Frameworks",
+    items: ["React", "Next.js", "Node.js"],
+  },
+  {
+    title: "Styling & UI",
+    items: ["Tailwind CSS", "Framer Motion", "Responsive UI", "Accessibility"],
+  },
+  {
+    title: "Tools",
+    items: ["Git", "GitHub", "Vercel", "VS Code"],
+  },
+];
+
+const marqueeStack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Framer Motion",
+  "Node.js",
+  "Git",
+  "Vercel",
+  "Accessibility",
+  "Performance",
+];
+
+const principles = [
+  {
+    icon: Gauge,
+    title: "Performance first",
+    body:
+      "Lighthouse 95+ isn't a target, it's a baseline. I profile, measure, and ship the version that's actually fast for users.",
+  },
+  {
+    icon: Layers,
+    title: "Architecture that scales",
+    body:
+      "Component boundaries, route patterns, and data flow chosen so the codebase reads well at 10× its current size.",
+  },
+  {
+    icon: Wand2,
+    title: "Details matter",
+    body:
+      "Motion that respects reduced-motion. Focus rings that don't disappear. Empty states that don't feel empty.",
+  },
+];
 
 export default function Home() {
-  const [dark, setDark] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 900);
-  }, []);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      setDark(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newDark = !dark;
-    setDark(newDark);
-    document.documentElement.classList.toggle("dark", newDark);
-    localStorage.setItem("theme", newDark ? "dark" : "light");
-  };
-
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center bg-white dark:bg-black">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
-
   return (
-    <main className="pt-20 sm:pt-24 min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white overflow-x-hidden">
+    <>
+      <Navbar />
+      <main
+        id="main"
+        className="relative min-h-screen text-zinc-900 dark:text-zinc-100"
+      >
+        {/* ambient glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-[-180px] left-1/2 -translate-x-1/2 w-[280px] h-[280px] sm:w-[520px] sm:h-[520px] md:w-[720px] md:h-[720px] bg-indigo-500/15 blur-[120px] rounded-full -z-10"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-[400px] right-[-120px] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-fuchsia-500/10 blur-[120px] rounded-full -z-10"
+        />
 
-      {/* GLOW */}
-      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] md:w-[600px] md:h-[600px] bg-purple-500/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
+        {/* HERO */}
+        <section
+          id="top"
+          className="max-w-6xl mx-auto px-4 sm:px-6 pt-32 sm:pt-40 pb-20 sm:pb-28"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 backdrop-blur"
+          >
+            <span className="relative flex w-2 h-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping" />
+              <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500" />
+            </span>
+            Available for frontend roles
+          </motion.div>
 
-      {/* NAVBAR */}
-      <header className="fixed top-0 w-full backdrop-blur-xl bg-white/70 dark:bg-black/40 border-b z-50">
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
-          <Reveal>
-            <h1 className="font-bold text-base sm:text-lg">RANJANI</h1>
-          </Reveal>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
+            className="mt-6 text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-balance"
+          >
+            Frontend Developer
+            <br />
+            building{" "}
+            <span className="bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500 bg-clip-text text-transparent">
+              fast, accessible
+            </span>
+            <br />
+            web applications.
+          </motion.h1>
 
-          {/* Desktop nav */}
-          <div className="hidden sm:flex gap-6 items-center">
-            <a href="#projects" className="hover:text-indigo-500 transition">
-              Projects
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-8 max-w-2xl text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 text-balance"
+          >
+            I'm Ranjani — I ship production-grade React & Next.js apps with a
+            focus on performance, clean architecture, and the details that make
+            an interface feel right.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-10 flex flex-wrap gap-3"
+          >
+            <a
+              href="/Ranjani_Frontend_Developer_Resume.pdf"
+              className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-sm font-medium hover:bg-indigo-600 dark:hover:bg-indigo-500 dark:hover:text-white transition"
+            >
+              <Download size={16} />
+              Download resume
             </a>
-            <a href="#contact" className="hover:text-indigo-500 transition">
-              Contact
+            <a
+              href="mailto:ranjanijeyaraj23@gmail.com"
+              className="group inline-flex items-center gap-2 px-5 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm font-medium hover:border-indigo-500 hover:text-indigo-500 transition"
+            >
+              <Mail size={16} />
+              Get in touch
+              <ArrowUpRight
+                size={14}
+                className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </a>
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="p-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:scale-110 transition"
+            <a
+              href="https://github.com/ranjanijeyaraj23"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-5 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm font-medium hover:border-indigo-500 hover:text-indigo-500 transition"
             >
-              {dark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </div>
+              <GithubIcon size={16} />
+              GitHub
+            </a>
+          </motion.div>
 
-          {/* Mobile controls */}
-          <div className="flex sm:hidden items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="p-2 rounded-lg border border-gray-300 dark:border-gray-700"
-            >
-              {dark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            <button
-              onClick={() => setMenuOpen((o) => !o)}
-              aria-label="Toggle menu"
-              className="p-2 rounded-lg border border-gray-300 dark:border-gray-700"
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-        </div>
+          {/* Metrics strip */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-zinc-200 dark:bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800"
+          >
+            {[
+              { k: "95+", v: "Lighthouse score" },
+              { k: "3", v: "Production apps" },
+              { k: "2+ yrs", v: "Frontend focus" },
+              { k: "100%", v: "Mobile-first builds" },
+            ].map((m) => (
+              <div
+                key={m.v}
+                className="p-5 sm:p-6 bg-white dark:bg-zinc-950"
+              >
+                <div className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  {m.k}
+                </div>
+                <div className="mt-1 text-xs sm:text-sm text-zinc-500 font-mono uppercase tracking-wider">
+                  {m.v}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </section>
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div className="sm:hidden border-t bg-white/90 dark:bg-black/70 backdrop-blur-xl">
-            <div className="flex flex-col px-4 py-3 gap-3">
-              <a
-                href="#projects"
-                onClick={() => setMenuOpen(false)}
-                className="py-2 hover:text-indigo-500"
-              >
-                Projects
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setMenuOpen(false)}
-                className="py-2 hover:text-indigo-500"
-              >
-                Contact
-              </a>
+        {/* MARQUEE */}
+        <section className="border-y border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-zinc-950/40">
+          <div className="overflow-hidden mask-fade-x py-5">
+            <div className="flex gap-12 animate-marquee whitespace-nowrap text-sm font-mono uppercase tracking-[0.2em] text-zinc-500">
+              {[...marqueeStack, ...marqueeStack].map((s, i) => (
+                <span key={`${s}-${i}`} className="flex items-center gap-12">
+                  {s}
+                  <Sparkles size={12} className="text-indigo-500/60" />
+                </span>
+              ))}
             </div>
           </div>
-        )}
-      </header>
+        </section>
 
-      {/* HERO */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-10 sm:mt-16">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
+        {/* WORK */}
+        <section
+          id="work"
+          className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-32"
         >
-          Frontend Developer building{" "}
-          <span className="text-indigo-500">
-            scalable, high-performance web applications
-          </span>
-        </motion.h1>
+          <SectionHeading
+            index="01"
+            label="Selected work"
+            title="Projects I've shipped"
+            description="Production apps spanning e-commerce, dashboards, and marketing sites — built with performance, accessibility, and maintainability in mind."
+          />
 
-        <p className="mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-xl">
-          I build production-ready applications using React & Next.js with strong
-          focus on performance, clean architecture, and user experience.
-        </p>
+          {/* Featured project */}
+          {projects
+            .filter((p) => p.featured)
+            .map((p) => (
+              <Reveal key={p.title}>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-white to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 p-6 sm:p-10 hover:border-indigo-500/50 transition"
+                >
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <div className="text-xs font-mono uppercase tracking-[0.18em] text-indigo-500">
+                        Featured
+                      </div>
+                      <h3 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight">
+                        {p.title}
+                      </h3>
+                      <p className="mt-3 text-zinc-600 dark:text-zinc-400">
+                        {p.tagline}
+                      </p>
+                      <ul className="mt-5 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+                        {p.points.map((pt) => (
+                          <li key={pt} className="flex gap-2">
+                            <span className="text-indigo-500 mt-1.5 w-1 h-1 rounded-full bg-indigo-500 shrink-0" />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {p.stack.map((t) => (
+                          <span
+                            key={t}
+                            className="px-2.5 py-1 text-xs font-mono rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-indigo-500/10 via-fuchsia-500/10 to-transparent">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-5xl font-semibold tracking-tight bg-gradient-to-br from-indigo-500 to-fuchsia-500 bg-clip-text text-transparent">
+                            {p.impact}
+                          </div>
+                          <div className="mt-2 text-xs font-mono uppercase tracking-[0.2em] text-zinc-500">
+                            Performance
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute top-6 right-6 p-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 group-hover:border-indigo-500 group-hover:text-indigo-500 transition">
+                    <ArrowUpRight size={16} />
+                  </div>
+                </a>
+              </Reveal>
+            ))}
 
-        <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
-          <a
-            href="/Ranjani_Frontend_Developer_Resume.pdf"
-            className="px-5 sm:px-6 py-3 bg-indigo-500 text-white rounded-lg shadow hover:scale-105 transition text-sm sm:text-base"
-          >
-            Download Resume
-          </a>
-
-          <a
-            href="https://github.com/ranjanijeyaraj23"
-            target="_blank"
-            className="px-5 sm:px-6 py-3 border rounded-lg text-sm sm:text-base"
-          >
-            GitHub
-          </a>
-        </div>
-      </section>
-
-      {/* WHY HIRE ME */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-bold mb-4">Why Hire Me</h2>
-        <p className="text-gray-600 dark:text-gray-300">
-          I focus on building real-world applications, not just UI demos. My work
-          emphasizes performance optimization, scalability, and clean code
-          practices. I deliver production-ready features that solve real problems.
-        </p>
-      </section>
-
-      {/* SKILLS */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6">Skills</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {[
-            {
-              title: "Frontend",
-              skills: ["React", "Next.js", "TypeScript", "JavaScript"],
-            },
-            {
-              title: "Styling",
-              skills: ["Tailwind CSS", "Responsive UI"],
-            },
-            {
-              title: "Tools",
-              skills: ["Git", "GitHub", "Vercel"],
-            },
-          ].map((group) => (
-            <div
-              key={group.title}
-              className="p-5 sm:p-6 bg-white dark:bg-gray-900 rounded-xl shadow"
-            >
-              <h3 className="font-semibold mb-3">{group.title}</h3>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((s) => (
-                  <span
-                    key={s}
-                    className="px-3 py-1 text-sm bg-indigo-500/10 text-indigo-500 rounded-full"
+          {/* Grid of remaining */}
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-6">
+            {projects
+              .filter((p) => !p.featured)
+              .map((p, i) => (
+                <Reveal key={p.title} delay={i * 0.08}>
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block h-full p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-indigo-500/50 transition"
                   >
-                    {s}
-                  </span>
-                ))}
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-lg font-semibold tracking-tight">
+                        {p.title}
+                      </h3>
+                      <ArrowUpRight
+                        size={16}
+                        className="text-zinc-400 transition group-hover:text-indigo-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </div>
+                    <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                      {p.tagline}
+                    </p>
+                    <ul className="mt-4 space-y-1.5 text-xs text-zinc-500">
+                      {p.points.map((pt) => (
+                        <li key={pt}>— {pt}</li>
+                      ))}
+                    </ul>
+                    <div className="mt-5 flex flex-wrap gap-1.5">
+                      {p.stack.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 text-[11px] font-mono rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </a>
+                </Reveal>
+              ))}
+          </div>
+        </section>
+
+        {/* TECH */}
+        <section
+          id="tech"
+          className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-32"
+        >
+          <SectionHeading
+            index="02"
+            label="Tech stack"
+            title="Tools I reach for"
+            description="A focused stack chosen for shipping speed without sacrificing quality."
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {techGroups.map((g, i) => (
+              <Reveal key={g.title} delay={i * 0.06}>
+                <div className="h-full p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+                  <div className="text-xs font-mono uppercase tracking-[0.18em] text-indigo-500">
+                    {g.title}
+                  </div>
+                  <ul className="mt-4 space-y-2">
+                    {g.items.map((it) => (
+                      <li
+                        key={it}
+                        className="text-sm text-zinc-700 dark:text-zinc-300"
+                      >
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* APPROACH */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-32">
+          <SectionHeading
+            index="03"
+            label="Approach"
+            title="How I think about frontend"
+          />
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
+            {principles.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <Reveal key={p.title} delay={i * 0.08}>
+                  <div className="h-full p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900">
+                    <div className="inline-flex p-2.5 rounded-lg bg-indigo-500/10 text-indigo-500">
+                      <Icon size={18} />
+                    </div>
+                    <h3 className="mt-5 text-lg font-semibold tracking-tight">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      {p.body}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* EXPERIENCE */}
+        <section
+          id="experience"
+          className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-32"
+        >
+          <SectionHeading
+            index="04"
+            label="Experience"
+            title="Where I've been working"
+          />
+          <Reveal>
+            <div className="relative pl-6 border-l border-zinc-200 dark:border-zinc-800">
+              <span className="absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full bg-indigo-500" />
+              <div className="text-xs font-mono uppercase tracking-[0.18em] text-zinc-500">
+                2023 — Present
+              </div>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight">
+                Frontend Developer
+              </h3>
+              <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-400">
+                Developed scalable applications including dashboards and
+                e-commerce platforms. Focused on performance optimization,
+                UI/UX, and maintainable architecture. Shipped features end to
+                end — from spec to production.
+              </p>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 sm:mt-32"
+        >
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-gradient-to-br from-white to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 p-8 sm:p-14 text-center">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.18),transparent_60%)]"
+              />
+              <div className="relative">
+                <div className="text-xs font-mono uppercase tracking-[0.18em] text-indigo-500">
+                  05 — Contact
+                </div>
+                <h2 className="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight text-balance">
+                  Let's build something{" "}
+                  <span className="bg-gradient-to-r from-indigo-500 to-fuchsia-500 bg-clip-text text-transparent">
+                    great
+                  </span>{" "}
+                  together.
+                </h2>
+                <p className="mt-4 max-w-xl mx-auto text-zinc-600 dark:text-zinc-400">
+                  Open to frontend roles and freelance projects. The fastest
+                  way to reach me is email — I usually reply within a day.
+                </p>
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <a
+                    href="mailto:ranjanijeyaraj23@gmail.com"
+                    className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-sm font-medium hover:bg-indigo-600 dark:hover:bg-indigo-500 dark:hover:text-white transition"
+                  >
+                    <Mail size={16} />
+                    ranjanijeyaraj23@gmail.com
+                  </a>
+                  <a
+                    href="/Ranjani_Frontend_Developer_Resume.pdf"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-zinc-300 dark:border-zinc-700 text-sm font-medium hover:border-indigo-500 hover:text-indigo-500 transition"
+                  >
+                    <Download size={16} />
+                    Resume
+                  </a>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </Reveal>
+        </section>
 
-      {/* PROJECTS */}
-      <section id="projects" className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6">Projects</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {[
-            {
-              title: "E-commerce Platform",
-              desc: "Built full-featured e-commerce system with cart, filters, and dynamic product pages.",
-              points: [
-                "Achieved 95+ Lighthouse performance score",
-                "Implemented dynamic routing with Next.js",
-                "Optimized UI rendering for fast load times",
-              ],
-              link: "https://ecommerce-app-liard-eight.vercel.app",
-            },
-            {
-              title: "Admin Dashboard",
-              desc: "Developed analytics dashboard with authentication and data visualization.",
-              points: [
-                "Integrated charts for real-time insights",
-                "Built secure authentication system",
-                "Designed fully responsive UI",
-              ],
-              link: "https://admin-dashboard-tau-neon-v4jhw2udf8.vercel.app",
-            },
-            {
-              title: "Business Website",
-              desc: "Created responsive business site with chatbot integration.",
-              points: [
-                "Improved user engagement with chatbot",
-                "Built mobile-first responsive layout",
-                "Optimized UI for performance",
-              ],
-              link: "https://eeshisoft-nine.vercel.app",
-            },
-          ].map((p) => (
-            <a
-              key={p.title}
-              href={p.link}
-              target="_blank"
-              className="p-5 sm:p-6 bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-xl transition flex flex-col"
-            >
-              <h3 className="font-semibold">{p.title}</h3>
-              <p className="text-sm text-gray-500 mt-2">{p.desc}</p>
-
-              <ul className="mt-3 text-xs text-gray-500 space-y-1">
-                {p.points.map((pt) => (
-                  <li key={pt}>• {pt}</li>
-                ))}
-              </ul>
-
-              <span className="text-indigo-500 mt-4 inline-block">
-                View Project →
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6">Experience</h2>
-
-        <div className="border-l pl-4 sm:pl-6">
-          <h3 className="font-semibold">Frontend Developer</h3>
-          <p className="text-sm text-gray-500">2023 – Present</p>
-          <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Developed scalable applications including dashboards and e-commerce
-            platforms. Focused on performance optimization, UI/UX, and maintainable
-            architecture.
-          </p>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-20 pb-16 sm:pb-20">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6">Contact</h2>
-
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
-          Open to frontend roles and freelance opportunities.
-        </p>
-
-        <a
-          href="mailto:ranjanijeyaraj23@gmail.com"
-          className="inline-block px-5 sm:px-6 py-3 bg-indigo-500 text-white rounded-lg"
-        >
-          Send Email
-        </a>
-      </section>
-    </main>
+        <Footer />
+      </main>
+    </>
   );
 }
